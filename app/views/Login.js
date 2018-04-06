@@ -10,6 +10,7 @@ import {
   Button,
   KeyboardAvoidingView
 } from 'react-native';
+import { Actions } from 'react-native-router-flux'
 
 const logo = require('../images/logo.png')
 const window = Dimensions.get('window');
@@ -28,15 +29,26 @@ constructor(props) {
     }
 }
 
+    toLogin() {
+        //fazer login
+        if (this.state.email !== '' && this.state.password !== '') {
+            Actions.controller()
+        }
+    }
+
+    _changeState() {
+        this.setState({ email: 'testando.123@teste.com' })
+    }
+
   render() {
     return (
         <KeyboardAvoidingView
             style={styles.container}
             behavior="padding">
-            <Image
-                style={{ width: 290, height: 100}} 
-                source={logo} 
-            />
+            {/* <Image
+                style={{ width: 290, height: 100}}
+                source={logo}
+            /> */}
             <TextInput
                 value={this.state.email}
                 placeholder='exemplo@email.com'
@@ -55,15 +67,22 @@ constructor(props) {
                 // placeholderTextColor='#F5FCFF'
                 onChangeText={text => this.setState({ password: text })}
             />
+            <View style={{width: 200, height: 80, justifyContent: 'space-between', marginTop: 10}}>
+                <Button
+                    onPress={() => this.toLogin()}
+                    title='Entrar'
+                    style={{flex: 1, alignSelf: 'stretch', height: 50}}
+                />
+                <Button
+                    onPress={() => Actions.cadastrar()}
+                    title='Cadastrar'
+                    style={{flex: 1, alignSelf: 'stretch', height: 50}}
+                />
+            </View>
             <Button
-                onPress={() => false}
-                title='Entrar'
-                style={{width: 100, height: 50}}
-            />
-            <Button
-                onPress={() => false}
-                title='Cadastrar'
-                style={{width: 100, height: 50}}
+                onPress={() => this._changeState()}
+                title='Teste'
+                style={{flex: 1, alignSelf: 'stretch', height: 50}}
             />
         </KeyboardAvoidingView>
     );

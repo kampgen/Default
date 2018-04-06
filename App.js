@@ -7,14 +7,18 @@ import {
 } from 'react-native';
 import { Scene, Router, Stack } from 'react-native-router-flux'
 import Login from './app/views/Login'
+import Controller from './app/views/Controller'
+import Cadastrar from './app/views/Cadastrar'
 
 type Props = {};
 export default class App extends Component<Props> {
   render() {
     return (
-    <Router sceneStyle={{  }}>
+    <Router>
         <Stack key='root'>
-            <Scene key='login' initial component={Login} />
+            <Scene key='login' initial hideNavBar component={Login} />
+            <Scene key='controller' component={Controller} />
+            <Scene key='cadastrar' component={Cadastrar} />
         </Stack>
     </Router>
     );

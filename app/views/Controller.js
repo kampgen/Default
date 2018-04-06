@@ -5,17 +5,18 @@ import {
     Text,
     View
   } from 'react-native';
-  
+
   type Props = {};
   export default class Login extends Component<Props> {
     render() {
       return (
         <View style={styles.container}>
+            <Text>Teste</Text>
         </View>
       );
     }
   }
-  
+
   const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -24,4 +25,3 @@ import {
       backgroundColor: '#F5FCFF',
     },
   });
-  
