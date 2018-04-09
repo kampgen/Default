@@ -12,12 +12,7 @@ import {
 } from 'react-native';
 import { Actions } from 'react-native-router-flux'
 
-const logo = require('../images/logo.png')
-const window = Dimensions.get('window');
 
-const IMAGE_HEIGHT = window.width / 2;
-const IMAGE_HEIGHT_SMALL = window.width /7;
-//
 
 export default class Login extends Component {
 constructor(props) {
@@ -55,19 +50,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'rgb(29, 92, 145)',
-  },
-  input: {
-    height: 50,
-    backgroundColor: '#fff',
-    marginHorizontal: 10,
-    marginVertical: 5,
-    width: window.width - 30,
-  },
-  logo: {
-    height: IMAGE_HEIGHT,
-    resizeMode: 'contain',
-    marginBottom: 20,
-    padding:10,
-    marginTop:20
   },
 });

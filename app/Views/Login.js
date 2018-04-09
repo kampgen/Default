@@ -11,33 +11,48 @@ import {
   KeyboardAvoidingView
 } from 'react-native';
 import { Actions } from 'react-native-router-flux'
+import { connect } from 'react-redux'
+import { login } from '../Redux/login'
 
-const logo = require('../images/logo.png')
+const logo = require('../Images/logo.png')
 const window = Dimensions.get('window');
 
 const IMAGE_HEIGHT = window.width / 2;
 const IMAGE_HEIGHT_SMALL = window.width /7;
 //
 
-export default class Login extends Component {
+const mapStateToProps = state => ({
+    email: state.login.email,
+    senha: state.login.senha,
+})
+
+const mapDispatchToProps = dispatch => ({
+    login: (info) => dispatch(login(info)),
+})
+
+class Login extends Component {
 constructor(props) {
     super(props)
 
     this.state = {
         email: '',
-        password: '',
+        senha: '',
     }
 }
 
-    toLogin() {
+    _handleLogin() {
         //fazer login
-        if (this.state.email !== '' && this.state.password !== '') {
+        if (this.state.email !== '' && this.state.senha !== '') {
+            this.props.login({
+                email: this.state.email,
+                senha: this.state.senha,
+            })
             Actions.controller()
         }
     }
 
     _changeState() {
-        this.setState({ email: 'testando.123@teste.com' })
+        // this.setState({ email: 'testando.123@teste.com' })
     }
 
   render() {
@@ -59,17 +74,17 @@ constructor(props) {
                 onChangeText={text => this.setState({ email: text })}
             />
             <TextInput
-                value={this.state.password}
+                value={this.state.senha}
                 keyboardType='email-address'
                 secureTextEntry
                 style={styles.input}
                 placeholder="senha"
                 // placeholderTextColor='#F5FCFF'
-                onChangeText={text => this.setState({ password: text })}
+                onChangeText={text => this.setState({ senha: text })}
             />
             <View style={{width: 200, height: 80, justifyContent: 'space-between', marginTop: 10}}>
                 <Button
-                    onPress={() => this.toLogin()}
+                    onPress={() => this._handleLogin()}
                     title='Entrar'
                     style={{flex: 1, alignSelf: 'stretch', height: 50}}
                 />
@@ -111,3 +126,5 @@ const styles = StyleSheet.create({
     marginTop:20
   },
 });
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login)
